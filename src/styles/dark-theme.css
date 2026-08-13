@@ -93,13 +93,48 @@ small { color: var(--muted); }
 /* Make sure inline borders from older styles are muted */
 *[style] { border-color: var(--border) !important; }
 
-/* Dropdown / menu overrides - ensure all dropdowns use dark gray background and white text */
-select, .dropdown, .dropdown-menu, .select-dropdown, datalist { background: var(--surface) !important; color: var(--text) !important; }
-select option, .dropdown li, .dropdown-menu li { background: var(--surface) !important; color: var(--text) !important; }
-/* For custom popover menus that use role=listbox or .menu */
-[role="listbox"], .menu, .menu-item { background: var(--surface) !important; color: var(--text) !important; }
-/* Remove bright focus outlines but keep visible focus */
-select:focus, .dropdown:focus, .menu:focus { outline: 2px solid rgba(79,179,255,0.12); box-shadow: 0 6px 18px rgba(47,128,237,0.06); }
+/* Dropdown / menu overrides - ensure all dropdowns use dark gray background and white text (opaque, non-transparent) */
+select, .dropdown, .dropdown-menu, .select-dropdown, datalist, .menu, [role="menu"], [role="listbox"] {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--card-shadow) !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+select option, .dropdown li, .dropdown-menu li, .menu-item, [role="menuitem"] {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+}
+/* Ensure any inline style backgrounds are overridden to be opaque */
+*[_style], *[style] { background-color: transparent !important; }
+/* Specific notification menu selectors: enforce solid background and white text */
+.notification-dropdown, .notifications, .notifications-menu, .notification-list, .notification-item, .notification-panel, .notification-popover, .notification-menu, .notif-menu, .popover, .popover-content {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--card-shadow) !important;
+  z-index: 11000 !important;
+  pointer-events: auto !important;
+}
+/* Ensure links, timestamps and controls inside notifications are readable */
+.notification-item a, .notification-item .meta, .notification-item time, .notifications .meta, .notifications a { color: var(--text) !important; }
+/* Remove transparency from any inline rgba backgrounds inside notification items */
+.notification-item *[style], .notifications *[style] { background-color: var(--surface) !important; color: var(--text) !important; }
+/* Make sure focus on notification menus is visible and non-transparent */
+.notification-dropdown:focus, .notification-menu:focus, .notification-popover:focus, .popover:focus { outline: 2px solid rgba(79,179,255,0.12) !important; box-shadow: 0 6px 18px rgba(47,128,237,0.06) !important; }
+/* Defensive: remove translucent backgrounds on common UI library classes */
+.popover-backdrop, .dropdown-backdrop, .menu-backdrop { background: none !important; }
+
+/* End overrides */
 
 
 /* Responsiveness */
