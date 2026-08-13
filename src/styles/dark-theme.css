@@ -1,0 +1,109 @@
+/* Dark cold minimal theme for sdd-finanzas
+   - Uses CSS variables for easy tweaks
+   - Applies global resets and styles for forms, buttons, tables, cards, nav
+*/
+:root {
+  --bg: #0b1220; /* very dark blue-gray */
+  --surface: #0f1724; /* surface panels */
+  --muted: #8b9aa8; /* secondary text */
+  --text: #e6eef6; /* primary text */
+  --accent: #4fb3ff; /* cool blue accent */
+  --accent-strong: #2aa6ff;
+  --success: #2dd4bf;
+  --danger: #fb7185;
+  --border: rgba(255,255,255,0.06);
+  --card-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  --radius: 10px;
+}
+
+html, body, #root, .app-root { height: 100%; }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg), #07101a 120%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* Normalize box sizing */
+*, *::before, *::after { box-sizing: border-box; }
+
+.app-root { padding: 20px; }
+
+/* Header */
+.app-root header { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom: 12px; }
+.app-root header h1 { margin:0; font-weight:700; font-size:20px; color:var(--text); }
+.app-root header .sub { color:var(--muted); font-size:13px }
+
+/* Nav */
+nav { display:flex; gap:8px; align-items:center; }
+nav button { background: transparent; border:1px solid var(--border); color:var(--muted); padding:8px 12px; border-radius:8px; font-size:13px; cursor:pointer; }
+nav button:hover { color:var(--text); border-color: rgba(79,179,255,0.16); background: rgba(79,179,255,0.03); }
+
+/* Cards / panels - try to restyle containers that used border:1px solid #eee */
+.app-root div[style], .card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008)); border-radius: var(--radius); border:1px solid var(--border) !important; box-shadow: var(--card-shadow); padding:12px; }
+
+/* Buttons global */
+button { font-family: inherit; border-radius:8px; border:1px solid var(--border); color:var(--text); background: transparent; padding:8px 12px; cursor:pointer; font-weight:600; font-size:13px; }
+button:active { transform: translateY(1px); }
+/* primary - blue filled */
+button.primary { background: linear-gradient(90deg,var(--accent),var(--accent-strong)); color: #021426; border-color: transparent; box-shadow: 0 8px 22px rgba(42,166,255,0.12); }
+/* nav-btn - subtle outlined button used for navigation and secondary actions */
+button.nav-btn { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:10px; }
+button.nav-btn.active, button.nav-btn:hover { color: var(--text); border-color: rgba(79,179,255,0.16); background: rgba(79,179,255,0.03); }
+/* ghost - low emphasis action */
+button.ghost { background: rgba(255,255,255,0.01); color: var(--muted); border: 1px solid rgba(255,255,255,0.02); }
+button.ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.04); }
+/* danger - destructive */
+button.danger { background: transparent; border-color: rgba(251,113,133,0.18); color: var(--danger); }
+
+/* Inputs and selects */
+input, textarea { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:10px 12px; border-radius:8px; outline:none; }
+select { background: var(--surface); border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:10px 12px; border-radius:8px; outline:none; }
+select option { background: var(--surface); color: var(--text); }
+input::placeholder, textarea::placeholder { color: rgba(230,238,246,0.5); }
+input:focus, textarea:focus, select:focus { border-color: rgba(79,179,255,0.22); box-shadow: 0 6px 18px rgba(47,128,237,0.06); }
+
+/* Tables */
+table { width:100%; border-collapse: collapse; color:var(--text); }
+th, td { padding:8px 10px; border-bottom:1px solid rgba(255,255,255,0.03); text-align:left; font-size:13px; }
+th { color:var(--muted); font-weight:600; font-size:12px; }
+
+/* Lists */
+ul { padding-left:18px; margin:0; }
+
+/* Small meta text */
+.meta { color: var(--muted); font-size:13px; }
+
+/* Progress bar tweaks */
+.progress { background: rgba(255,255,255,0.02); border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.03); }
+.progress > div { height:14px; background: linear-gradient(90deg, var(--accent), var(--accent-strong)); }
+
+/* Notification badge */
+.badge { background: var(--danger); color: white; padding:2px 8px; border-radius:12px; font-size:12px; }
+
+/* Forms layout compact */
+form { display: grid; gap:8px; }
+
+/* Footer small print */
+small { color: var(--muted); }
+
+/* Make sure inline borders from older styles are muted */
+*[style] { border-color: var(--border) !important; }
+
+/* Dropdown / menu overrides - ensure all dropdowns use dark gray background and white text */
+select, .dropdown, .dropdown-menu, .select-dropdown, datalist { background: var(--surface) !important; color: var(--text) !important; }
+select option, .dropdown li, .dropdown-menu li { background: var(--surface) !important; color: var(--text) !important; }
+/* For custom popover menus that use role=listbox or .menu */
+[role="listbox"], .menu, .menu-item { background: var(--surface) !important; color: var(--text) !important; }
+/* Remove bright focus outlines but keep visible focus */
+select:focus, .dropdown:focus, .menu:focus { outline: 2px solid rgba(79,179,255,0.12); box-shadow: 0 6px 18px rgba(47,128,237,0.06); }
+
+
+/* Responsiveness */
+@media (max-width: 700px){
+  .app-root { padding:12px }
+  header h1 { font-size:18px }
+}

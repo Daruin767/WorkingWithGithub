@@ -1,0 +1,25 @@
+{
+  "name": "sdd-finanzas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "idb": "^7.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uuid": "^14.0.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^4.0.0",
+    "jsdom": "^30.0.1",
+    "vite": "^4.0.0",
+    "vitest": "^1.0.0"
+  }
+}

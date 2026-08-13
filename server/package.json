@@ -1,0 +1,14 @@
+{
+  "name": "sdd-finanzas-email-worker",
+  "version": "0.1.0",
+  "description": "Email worker for sdd-finanzas: accepts queued requests and sends via SMTP",
+  "main": "email-worker.js",
+  "scripts": {
+    "start": "node email-worker.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "nodemailer": "^6.9.3"
+  }
+}
